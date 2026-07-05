@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="SF Mono, Courier, monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <style>
+      text { fill: #e0e0e0; font-size: 13px; }
+      .title { font-size: 22px; font-weight: bold; fill: #00d4aa; }
+    </style>
+  </defs>
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+
+  <text x="30" y="40" class="title">🛡️ The Answer: Programmatic Prerequisite Verification</text>
+
+  <rect x="30" y="70" width="740" height="310" fill="#12122a" stroke="#00d4aa" stroke-width="2" rx="10"/>
+
+  <text x="50" y="100" style="fill:#00d4aa;font-size:16px;font-weight:bold;">📋 Key Takeaway</text>
+  <text x="50" y="130" style="font-size:14px;">Prompt-based constraints are behavioral suggestions — an LLM can bypass them under confusion.</text>
+  <text x="50" y="158" style="font-size:14px;">For critical enterprise risk mitigation (data leaks, unauthorized transactions), you must</text>
+  <text x="50" y="186" style="font-size:14px;">implement strict, programmatic validation rules on the application runtime layer.</text>
+
+  <line x1="50" y1="208" x2="750" y2="208" stroke="#333355" stroke-width="1"/>
+
+  <text x="50" y="235" style="fill:#8b5cf6;font-size:15px;font-weight:bold;">🏛️ Three Pillars Implementation:</text>
+  <text x="70" y="262" style="fill:#00d4aa;font-size:13px;">1. ⏸️ Context Fork: Downstream tools cannot execute without prerequisite data</text>
+  <text x="70" y="288" style="fill:#00d4aa;font-size:13px;">2. 🛡️ Validation Shield: Runtime guard throws VerificationRequiredError</text>
+  <text x="70" y="314" style="fill:#00d4aa;font-size:13px;">3. 🔍 Token Filter: Only verified parameters reach downstream calls</text>
+
+  <line x1="50" y1="336" x2="750" y2="336" stroke="#333355" stroke-width="1"/>
+
+  <text x="50" y="363" style="fill:#f59e0b;font-size:14px;">💡 Architecture > Prompt Engineering. Always enforce critical rules at runtime.</text>
+</svg>

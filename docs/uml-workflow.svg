@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" font-family="SF Mono, Courier, monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <style>
+      text { fill: #e0e0e0; font-size: 11px; }
+      .title { font-size: 22px; font-weight: bold; fill: #00d4aa; }
+      .subtitle { font-size: 14px; fill: #8888aa; }
+      .lifeline { stroke: #333355; stroke-width: 1; stroke-dasharray: 4,4; }
+      .msg { stroke: #00d4aa; stroke-width: 1.5; fill: none; marker-end: url(#ar); }
+      .msg-red { stroke: #e94560; stroke-width: 1.5; fill: none; marker-end: url(#ar-red); }
+      .msg-violet { stroke: #8b5cf6; stroke-width: 1.5; fill: none; marker-end: url(#ar-violet); }
+      .msg-self { stroke: #f59e0b; stroke-width: 1; fill: none; stroke-dasharray: 3,3; }
+      .lbl { font-size: 9px; }
+      .lbl-red { font-size: 9px; fill: #e94560; }
+      .lbl-green { font-size: 9px; fill: #00d4aa; }
+      .lbl-violet { font-size: 9px; fill: #8b5cf6; }
+      .box { fill: #12122a; stroke: #333355; stroke-width: 1; rx: 4; }
+      .box-red { fill: #1a1016; stroke: #e94560; rx: 4; }
+      .box-green { fill: #101a16; stroke: #00d4aa; rx: 4; }
+      .box-violet { fill: #16101a; stroke: #8b5cf6; rx: 4; }
+      .actor { font-weight: bold; font-size: 12px; fill: #e0e0e0; }
+      .note { font-size: 9px; fill: #f59e0b; }
+      .section { font-size: 16px; font-weight: bold; fill: #00d4aa; }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4aa"/>
+    </marker>
+    <marker id="ar-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e94560"/>
+    </marker>
+    <marker id="ar-violet" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="700" fill="url(#bgGrad)"/>
+
+  <text x="30" y="35" class="title">📊 UML Workflow Diagram — Naive vs Resilient Runtime Sequence</text>
+  <text x="30" y="55" class="subtitle">Side-by-side: Anti-pattern (left) vs Programmatic Prerequisite (right)</text>
+
+  <!-- Act 1: Naive (Left) -->
+  <text x="180" y="85" class="section" style="fill:#e94560;">❌ NAIVE ANTI-PATTERN</text>
+  <line x1="30" y1="95" x2="420" y2="95" stroke="#e94560" stroke-width="1"/>
+
+  <!-- Actors -->
+  <rect x="50" y="110" width="100" height="30" class="box-red"/>
+  <text x="65" y="130" class="actor" style="fill:#e94560;">User/LLM</text>
+
+  <rect x="200" y="110" width="120" height="30" class="box-red"/>
+  <text x="215" y="130" class="actor" style="fill:#e94560;">Naive Agent</text>
+
+  <rect x="400" y="110" width="100" height="30" class="box-red"/>
+  <text x="415" y="130" class="actor" style="fill:#e94560;">DB/System</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="140" x2="100" y2="340" class="lifeline"/>
+  <line x1="260" y1="140" x2="260" y2="340" class="lifeline"/>
+  <line x1="450" y1="140" x2="450" y2="340" class="lifeline"/>
+
+  <!-- Messages Naive -->
+  <path d="M 100 155 L 258 155" class="msg-red"/>
+  <text x="130" y="150" class="lbl-red">1. Request refund</text>
+
+  <path d="M 260 175 L 260 200" class="msg-self"/>
+  <text x="270" y="192" class="note">⏭ SKIP get_customer</text>
+
+  <path d="M 260 220 L 448 220" class="msg-red"/>
+  <text x="295" y="215" class="lbl-red">2. lookup_order(name)</text>
+
+  <path d="M 450 240 L 262 240" class="msg-red"/>
+  <text x="300" y="237" class="lbl-red">3. Order found (wrong owner!)</text>
+
+  <path d="M 260 260 L 448 260" class="msg-red"/>
+  <text x="295" y="255" class="lbl-red">4. process_refund()</text>
+
+  <path d="M 450 280 L 262 280" class="msg-red"/>
+  <text x="300" y="277" class="lbl-red">5. ❌ WRONG ACCOUNT CHARGED</text>
+
+  <!-- Failure box -->
+  <rect x="200" y="300" width="180" height="30" fill="none" stroke="#e94560" rx="4" stroke-dasharray="3,2"/>
+  <text x="215" y="320" class="lbl-red" style="font-size:11px;font-weight:bold;">💥 MISIDENTIFIED REFUND</text>
+
+  <!-- Act 2: Resilient (Right) -->
+  <text x="580" y="85" class="section" style="fill:#8b5cf6;">✅ RESILIENT (ANSWER)</text>
+  <line x1="480" y1="95" x2="870" y2="95" stroke="#8b5cf6" stroke-width="1"/>
+
+  <rect x="500" y="110" width="100" height="30" class="box-violet"/>
+  <text x="515" y="130" class="actor" style="fill:#8b5cf6;">User/LLM</text>
+
+  <rect x="650" y="110" width="120" height="30" class="box-violet"/>
+  <text x="662" y="130" class="actor" style="fill:#8b5cf6;">Resilient Agent</text>
+
+  <rect x="830" y="110" width="60" height="30" class="box-violet"/>
+  <text x="838" y="130" class="actor" style="fill:#8b5cf6;">DB</text>
+
+  <line x1="550" y1="140" x2="550" y2="640" class="lifeline"/>
+  <line x1="710" y1="140" x2="710" y2="640" class="lifeline"/>
+  <line x1="860" y1="140" x2="860" y2="640" class="lifeline"/>
+
+  <!-- Messages Resilient -->
+  <path d="M 550 155 L 708 155" class="msg-violet"/>
+  <text x="580" y="150" class="lbl-violet">1. Request refund</text>
+
+  <path d="M 710 175 L 710 200" class="msg-self"/>
+  <text x="718" y="192" class="note">🔒 ENFORCE prerequisite</text>
+
+  <path d="M 710 220 L 858 220" class="msg-violet"/>
+  <text x="730" y="215" class="lbl-green">2. get_customer(REQUIRED)</text>
+
+  <path d="M 860 240 L 712 240" class="msg-violet"/>
+  <text x="735" y="237" class="lbl-green">3. ✅ Verified customer ID</text>
+
+  <path d="M 710 260 L 710 290" class="msg-self"/>
+  <text x="718" y="280" class="lbl-green">if(!id) THROW</text>
+
+  <path d="M 710 310 L 858 310" class="msg-violet"/>
+  <text x="730" y="305" class="lbl-green">4. lookup_order(id, cid)</text>
+
+  <path d="M 860 330 L 712 330" class="msg-violet"/>
+  <text x="735" y="327" class="lbl-green">5. ✅ Order verified</text>
+
+  <path d="M 710 350 L 858 350" class="msg-violet"/>
+  <text x="730" y="345" class="lbl-green">6. process_refund()</text>
+
+  <path d="M 860 370 L 712 370" class="msg-violet"/>
+  <text x="735" y="367" class="lbl-green">7. ✅ Refund OK</text>
+
+  <!-- Success box -->
+  <rect x="650" y="390" width="180" height="30" fill="none" stroke="#00d4aa" rx="4" stroke-dasharray="3,2"/>
+  <text x="665" y="410" class="lbl-green" style="font-size:11px;font-weight:bold;">✅ CORRECT REFUND</text>
+
+  <!-- Comparison Table -->
+  <rect x="30" y="440" width="840" height="240" class="box"/>
+  <text x="50" y="465" class="section" style="font-size:15px;">📊 COMPARATIVE ANALYSIS</text>
+  <line x1="30" y1="478" x2="870" y2="478" stroke="#333355" stroke-width="1"/>
+
+  <text x="50" y="500" style="fill:#f59e0b;font-size:12px;font-weight:bold;">Metric</text>
+  <text x="280" y="500" style="fill:#e94560;font-size:12px;font-weight:bold;">❌ Naive</text>
+  <text x="540" y="500" style="fill:#00d4aa;font-size:12px;font-weight:bold;">✅ Resilient</text>
+  <text x="750" y="500" style="fill:#8b5cf6;font-size:12px;font-weight:bold;">🎯 Outcome</text>
+
+  <text x="50" y="525">Misidentified Accounts</text>
+  <text x="280" y="525" style="fill:#e94560;">~3 out of 25</text>
+  <text x="540" y="525" style="fill:#00d4aa;">0 out of 25</text>
+  <text x="750" y="525" style="fill:#8b5cf6;">100% elimination</text>
+
+  <text x="50" y="550">Token Cost</text>
+  <text x="280" y="550" style="fill:#e94560;">~10,500 tokens</text>
+  <text x="540" y="550" style="fill:#00d4aa;">~7,000 tokens</text>
+  <text x="750" y="550" style="fill:#8b5cf6;">~38% reduction</text>
+
+  <text x="50" y="575">Coordinator Interventions</text>
+  <text x="280" y="575" style="fill:#e94560;">3 per 25</text>
+  <text x="540" y="575" style="fill:#00d4aa;">1 per 25</text>
+  <text x="750" y="575" style="fill:#8b5cf6;">67% reduction</text>
+
+  <text x="50" y="600">Destructive Actions Blocked</text>
+  <text x="280" y="600" style="fill:#e94560;">0%</text>
+  <text x="540" y="600" style="fill:#00d4aa;">100%</text>
+  <text x="750" y="600" style="fill:#8b5cf6;">Complete protection</text>
+
+  <text x="50" y="625">Failure Type</text>
+  <text x="280" y="625" style="fill:#e94560;">Silent misidentification</text>
+  <text x="540" y="625" style="fill:#00d4aa;">Blocked before execution</text>
+  <text x="750" y="625" style="fill:#8b5cf6;">Fail-safe by design</text>
+
+  <text x="50" y="655" style="fill:#8888aa;font-size:10px;">💡 Key Insight: Prompt-based guardrails are behavioral suggestions. Programmatic prerequisites are enforced at the runtime layer, eliminating the failure class entirely.</text>
+
+  <text x="30" y="690" style="fill:#555577;font-size:9px;">🤖 Generated by DeepSeek V4 Pro | Claude AI Architect Exam Demo</text>
+</svg>

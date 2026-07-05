@@ -1,0 +1,26 @@
+{
+  "name": "customer-support-verification-guard-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion preview src/index.tsx",
+    "build": "remotion render src/index.tsx FullVideo out/full-video.mp4",
+    "render:all": "npm run render:scene1 && npm run render:scene2 && npm run render:scene3 && npm run render:scene4 && npm run render:full",
+    "render:scene1": "remotion render src/index.tsx Scene1_NaiveIntro exports/scene1-naive-intro.mp4 --frames-per-lambda=150",
+    "render:scene2": "remotion render src/index.tsx Scene2_NaiveFailure exports/scene2-naive-failure.mp4 --frames-per-lambda=150",
+    "render:scene3": "remotion render src/index.tsx Scene3_ResilientIntro exports/scene3-resilient-intro.mp4 --frames-per-lambda=150",
+    "render:scene4": "remotion render src/index.tsx Scene4_ResilientSuccess exports/scene4-resilient-success.mp4 --frames-per-lambda=150",
+    "render:full": "remotion render src/index.tsx FullVideo exports/full-video.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/renderer": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.0.0"
+  }
+}

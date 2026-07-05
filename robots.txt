@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rifaterdemsahin.github.io/customer-support-verification-guard/sitemap.xml

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="SF Mono, Courier, monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <style>
+      text { fill: #e0e0e0; font-size: 13px; }
+      .title { font-size: 22px; font-weight: bold; fill: #e94560; }
+      .step { font-size: 15px; font-weight: bold; }
+      .code { font-size: 11px; fill: #e94560; font-family: SF Mono, Courier, monospace; }
+    </style>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <text x="30" y="40" class="title">❌ Act 1: How the Naive Approach Fails</text>
+
+  <rect x="30" y="70" width="230" height="90" fill="#1a1016" stroke="#e94560" rx="8"/>
+  <text x="50" y="98" class="step" style="fill:#e94560;">🔴 Step 1</text>
+  <text x="50" y="120" style="font-size:12px;">Request refund for</text>
+  <text x="50" y="140" style="font-size:12px;">"Bob Smith" → ORD-102</text>
+
+  <rect x="290" y="70" width="230" height="90" fill="#1a1016" stroke="#e94560" stroke-dasharray="4,2" rx="8"/>
+  <text x="310" y="98" class="step" style="fill:#e94560;">⏭️ Step 2 SKIPPED</text>
+  <text x="310" y="120" style="font-size:12px;">get_customer is</text>
+  <text x="310" y="140" style="font-size:12px;">NOT called (12%)</text>
+
+  <rect x="550" y="70" width="230" height="90" fill="#1a1016" stroke="#e94560" rx="8"/>
+  <text x="570" y="98" class="step" style="fill:#e94560;">🔴 Step 3</text>
+  <text x="570" y="120" style="font-size:12px;">lookup_order("ORD-102"</text>
+  <text x="570" y="140" style="font-size:12px;">, null) // no customerID</text>
+
+  <rect x="30" y="190" width="740" height="140" fill="#1a1016" stroke="#e94560" rx="8"/>
+  <text x="50" y="218" class="step" style="fill:#e94560;">💥 WHAT HAPPENS</text>
+  <text x="50" y="245" style="font-size:13px;">The naive agent calls lookup_order with only the customer's stated name.</text>
+  <text x="50" y="270" style="font-size:13px;">Without a verified customer ID, the system may retrieve the WRONG account.</text>
+  <text x="50" y="295" style="font-size:13px;">Result: Alice's refund goes to Bob's account. Data leaked. Money lost.</text>
+  <text x="50" y="318" style="fill:#e94560;font-size:12px;">❌ Root cause: No programmatic guard prevents downstream tool calls</text>
+
+  <rect x="30" y="355" width="740" height="130" fill="#1a1016" stroke="#f59e0b" rx="8"/>
+  <text x="50" y="383" class="step" style="fill:#f59e0b;">🔍 WHY Prompt-Based Constraints Fail</text>
+  <text x="50" y="408" style="font-size:12px;">• Prompts are behavioral suggestions — not enforceable rules</text>
+  <text x="50" y="430" style="font-size:12px;">• Under high prompt confusion, the LLM may ignore instructions</text>
+  <text x="50" y="452" style="font-size:12px;">• Critical enterprise risks require application-layer enforcement</text>
+  <text x="50" y="474" style="fill:#e94560;font-size:11px;">💡 "You can't prompt your way out of an architectural problem."</text>
+</svg>

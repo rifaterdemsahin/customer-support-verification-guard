@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="SF Mono, Courier, monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <style>
+      text { fill: #e0e0e0; font-size: 13px; }
+      .title { font-size: 22px; font-weight: bold; fill: #00d4aa; }
+    </style>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <text x="30" y="40" class="title">🔍 Step 0: The Problem — 12% Failure Rate</text>
+
+  <!-- Stats -->
+  <rect x="30" y="70" width="350" height="180" fill="none" stroke="#e94560" stroke-width="2" rx="10"/>
+  <text x="50" y="100" style="fill:#e94560;font-size:18px;font-weight:bold;">❌ Production Data</text>
+  <text x="50" y="130" style="font-size:14px;">• 12% of requests skip get_customer</text>
+  <text x="50" y="155" style="font-size:14px;">• lookup_order called with name only</text>
+  <text x="50" y="180" style="font-size:14px;">• Misidentified accounts → wrong refunds</text>
+  <text x="50" y="215" style="fill:#e94560;font-size:16px;font-weight:bold;">💥 Enterprise Risk: Money Leakage</text>
+
+  <!-- Why prompt fails -->
+  <rect x="420" y="70" width="350" height="180" fill="none" stroke="#f59e0b" stroke-width="2" rx="10"/>
+  <text x="440" y="100" style="fill:#f59e0b;font-size:18px;font-weight:bold;">⚠️ Why Prompts Fail</text>
+  <text x="440" y="130" style="font-size:14px;">• "Prompt-based guardrails" = suggestions</text>
+  <text x="440" y="155" style="font-size:14px;">• LLM can bypass under confusion</text>
+  <text x="440" y="180" style="font-size:14px;">• No runtime enforcement = no guarantee</text>
+  <text x="440" y="215" style="fill:#f59e0b;font-size:16px;font-weight:bold;">📐 Need: programmatic constraints</text>
+
+  <!-- The fix -->
+  <rect x="30" y="280" width="740" height="120" fill="none" stroke="#00d4aa" stroke-width="2" rx="10"/>
+  <text x="50" y="310" style="fill:#00d4aa;font-size:18px;font-weight:bold;">✅ The Fix: Programmatic Prerequisite</text>
+  <text x="50" y="340" style="font-size:14px;">Add a strict rule in application runtime: BLOCK lookup_order and process_refund</text>
+  <text x="50" y="365" style="font-size:14px;">until get_customer has returned a verified customer ID.</text>
+  <text x="50" y="390" style="fill:#00d4aa;font-size:14px;font-weight:bold;">🔒 if (!customerId) throw new VerificationRequiredError()</text>
+
+  <!-- Code snippet box -->
+  <rect x="30" y="420" width="740" height="65" fill="#0a0a1a" stroke="#333355" rx="6"/>
+  <text x="50" y="442" style="fill:#8888aa;font-size:11px;font-family:SF Mono,Courier,monospace;">// BEFORE (❌): lookup_order can run without get_customer</text>
+  <text x="50" y="460" style="fill:#e94560;font-size:11px;font-family:SF Mono,Courier,monospace;">if (withCustomerId) { await get_customer(name); } // SKIPPABLE</text>
+  <text x="50" y="476" style="fill:#8888aa;font-size:11px;font-family:SF Mono,Courier,monospace;">// AFTER (✅): get_customer is ALWAYS REQUIRED</text>
+  <text x="50" y="494" style="fill:#00d4aa;font-size:11px;font-family:SF Mono,Courier,monospace;">const customer = await get_customer(name); // NON-OPTIONAL ∀ requests</text>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "name": "customer-support-verification-guard",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Architectural demonstration: Programmatic prerequisite verification prevents misidentified account refunds",
+  "main": "demo.js",
+  "scripts": {
+    "start": "node demo.js",
+    "naive": "node demo.js --naive",
+    "resilient": "node demo.js --resilient",
+    "benchmark": "node demo.js",
+    "prepare": "echo 'dry-run: OK'"
+  },
+  "keywords": [
+    "ai-architecture",
+    "customer-support",
+    "verification-guard",
+    "programmatic-prerequisite",
+    "llm-reliability"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="SF Mono, Courier, monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <style>
+      text { fill: #e0e0e0; font-size: 13px; }
+      .title { font-size: 22px; font-weight: bold; fill: #8b5cf6; }
+      .step { font-size: 15px; font-weight: bold; }
+    </style>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <text x="30" y="40" class="title">✅ Act 2: How the Resilient Architecture Succeeds</text>
+
+  <rect x="30" y="70" width="230" height="90" fill="#16101a" stroke="#8b5cf6" rx="8"/>
+  <text x="50" y="98" class="step" style="fill:#8b5cf6;">🟣 Step 1</text>
+  <text x="50" y="120" style="font-size:12px;">Request refund for</text>
+  <text x="50" y="140" style="font-size:12px;">"Bob Smith" → ORD-102</text>
+
+  <rect x="290" y="70" width="230" height="90" fill="#101a16" stroke="#00d4aa" rx="8"/>
+  <text x="310" y="98" class="step" style="fill:#00d4aa;">✅ Step 2 ENFORCED</text>
+  <text x="310" y="120" style="font-size:12px;">get_customer ALWAYS</text>
+  <text x="310" y="140" style="font-size:12px;">called (100%)</text>
+
+  <rect x="550" y="70" width="230" height="90" fill="#101a16" stroke="#00d4aa" rx="8"/>
+  <text x="570" y="98" class="step" style="fill:#00d4aa;">🔒 Step 3 GUARD</text>
+  <text x="570" y="120" style="font-size:12px;">if(!customerId)</text>
+  <text x="570" y="140" style="font-size:12px;">throw Error → block</text>
+
+  <rect x="30" y="190" width="740" height="120" fill="#101a16" stroke="#00d4aa" rx="8"/>
+  <text x="50" y="218" class="step" style="fill:#00d4aa;">🛡️ WHAT HAPPENS</text>
+  <text x="50" y="245" style="font-size:13px;">The resilient agent ALWAYS calls get_customer first — every single time.</text>
+  <text x="50" y="270" style="font-size:13px;">If get_customer fails, a VerificationRequiredError is thrown BEFORE any</text>
+  <text x="50" y="295" style="font-size:13px;">downstream tool (lookup_order, process_refund) can execute.</text>
+
+  <rect x="30" y="335" width="740" height="150" fill="#12122a" stroke="#f59e0b" rx="8"/>
+  <text x="50" y="363" class="step" style="fill:#f59e0b;">🔍 WHY Programmatic Prerequisites Are Superior</text>
+  <text x="50" y="388" style="font-size:12px;">• Enforced at the runtime layer — not subject to LLM interpretation</text>
+  <text x="50" y="410" style="font-size:12px;">• The guard executes BEFORE any downstream tool — fail-closed design</text>
+  <text x="50" y="432" style="font-size:12px;">• Eliminates the 12% failure class entirely — not reduce, ELIMINATE</text>
+  <text x="50" y="454" style="font-size:12px;">• Structured escalation: returning typed Result instead of raw exception</text>
+  <text x="50" y="476" style="fill:#00d4aa;font-size:11px;">💡 "Programmatic constraints are the seatbelt. Prompts are the suggestion to buckle up."</text>
+</svg>
